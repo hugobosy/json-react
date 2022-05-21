@@ -1,5 +1,6 @@
 import './App.css';
 import {useState} from "react";
+import {Word} from "./Word";
 
 function App() {
     const words = [
@@ -20,7 +21,7 @@ function App() {
         }
     ];
 
-    const [word, setWord] = useState(words.map(word => <p>{word.en} -> {word.pl}</p>))
+    const [word, setWord] = useState(words.map(word => <Word key={word.id} pol={word.pl} en={word.en}/>))
 
     return (
         <div className="App">
