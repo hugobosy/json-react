@@ -1,31 +1,23 @@
 import './App.css';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Word} from "./Word";
 
 function App() {
-    const words = [
-        {
-            "id": 1,
-            "en": "cat",
-            "pl": "kot"
-        },
-        {
-            "id": 2,
-            "en": "dog",
-            "pl": "pies"
-        },
-        {
-            "id": 3,
-            "en": "fish",
-            "pl": "ryba"
-        }
-    ];
 
-    const [word, setWord] = useState(words.map(word => <Word key={word.id} pol={word.pl} en={word.en}/>))
+    function loadWords() {
+        fetch('data/words.json')
+            .then(res => res.json())
+            .then(data => setWords(data.words))
+    }
 
+    const [words, setWords] = useState([])
+
+    useEffect(()=> {loadWords()}, [])
+
+    const listWords = words.map(word => <Word key={word.id} pl={word.pl} en={word.en}/>)
     return (
         <div className="App">
-            {word}
+            {listWords}
         </div>
     );
 }
