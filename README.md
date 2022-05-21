@@ -1,2 +1,3 @@
 # json-react
-Pojekt z wykorzystaniem Json fetch w React
+
+Projekt z wykorzystaniem json i fetch w React
